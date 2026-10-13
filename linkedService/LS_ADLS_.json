@@ -1,0 +1,10 @@
+{
+	"name": "LS_ADLS_",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://caresyncprojectmusr.dfs.core.windows.net/"
+		}
+	}
+}
