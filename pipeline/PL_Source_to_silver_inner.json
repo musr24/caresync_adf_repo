@@ -200,7 +200,7 @@
 				}
 			},
 			{
-				"name": "Update_fail_status",
+				"name": "Update_Success",
 				"type": "Script",
 				"dependsOn": [
 					{
@@ -227,7 +227,7 @@
 						{
 							"type": "Query",
 							"text": {
-								"value": "UPDATE ctrl.audit_log\nSET status = 'FAILED',\nend_time = SYSUTCDATETIME()\nWHERE adf_run_id = '@{pipeline().parameters.adf_run_id}' and table_id = @{item().table_id};",
+								"value": "\nUPDATE ctrl.audit_log\nSET\n    status = 'SUCCESS',\n    end_time = SYSUTCDATETIME(),\n    records_written = @{activity('bronze_to_silver').output.runOutput}\nWHERE\n    adf_run_id = '@{pipeline().parameters.adf_run_id}'\n    AND table_id = @{pipeline().parameters.table_id};",
 								"type": "Expression"
 							}
 						}
