@@ -190,7 +190,7 @@
 							"value": "@activity('read_table_details').output.firstRow.load_type",
 							"type": "Expression"
 						},
-						"": {
+						"merge_keys": {
 							"value": "@coalesce(activity('Read_Water_mark').output.firstRow.merge_keys,'')",
 							"type": "Expression"
 						}
