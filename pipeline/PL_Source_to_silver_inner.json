@@ -53,7 +53,7 @@
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
-						"activity": "check source system",
+						"activity": "Switch1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -80,10 +80,6 @@
 						},
 						"landing_timestamp": {
 							"value": "@variables('start_time')",
-							"type": "Expression"
-						},
-						"source_file_format": {
-							"value": "@coalesce(activity('read_table_details').output.firstRow.source_file_format,'')",
 							"type": "Expression"
 						}
 					}
@@ -305,7 +301,7 @@
 				}
 			},
 			{
-				"name": "check source system",
+				"name": "Switch1",
 				"type": "Switch",
 				"dependsOn": [
 					{
@@ -391,7 +387,7 @@
 							"value": "adls_csv",
 							"activities": [
 								{
-									"name": "Ingest_CSV_from_source_to_landing",
+									"name": "Ingest csv from source to landing",
 									"type": "Copy",
 									"dependsOn": [],
 									"policy": {
@@ -431,7 +427,7 @@
 											"referenceName": "DS_csv_Binary",
 											"type": "DatasetReference",
 											"parameters": {
-												"folder": {
+												"folder_name": {
 													"value": "@activity('read_table_details').output.firstRow.source_path",
 													"type": "Expression"
 												},
@@ -444,7 +440,7 @@
 											"referenceName": "DS_csv_Binary",
 											"type": "DatasetReference",
 											"parameters": {
-												"folder": {
+												"folder_name": {
 													"value": "@concat(activity('read_table_details').output.firstRow.source_system,'/',activity('read_table_details').output.firstRow.source_table_name,'/',variables('start_time'))",
 													"type": "Expression"
 												},
